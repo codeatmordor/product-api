@@ -47,6 +47,17 @@ public class ProductEntity {
     this.color = color;
   }
 
+
+  public ProductEntity(Product product) {
+    super();
+    this.product_id = product.getProductId();
+    this.title = product.getTitle();
+    this.brand = product.getBrand();
+    this.description = product.getDescription();
+    this.price = product.getPrice();
+    this.color = product.getColor();
+  }
+
   @Column(name = "price")
   private int price;
 
