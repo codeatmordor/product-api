@@ -41,7 +41,7 @@ public class ProductController {
   public ResponseEntity<List<Product>> create(@Valid @RequestBody final List<Product> products) {
     if (products == null || products.isEmpty())
       throw new ProductServiceException("invalid.argument");
-    if (products.size() > 1000)
+    if (products.size() > limit)
       throw new ProductServiceException("api.limit.exceeded");
     return new ResponseEntity<>(productService.create(products), HttpStatus.CREATED);
   }
@@ -65,6 +65,10 @@ public class ProductController {
 
   @PutMapping(path = "/products/bulk", produces = APPLICATION_JSON)
   public ResponseEntity<Set<Product>> update(@Valid @RequestBody final Set<Product> products) {
+    if (products == null || products.isEmpty())
+      throw new ProductServiceException("invalid.argument");
+    if (products.size() > limit)
+      throw new ProductServiceException("api.limit.exceeded");
     return new ResponseEntity<>(productService.update(products), HttpStatus.ACCEPTED);
   }
 

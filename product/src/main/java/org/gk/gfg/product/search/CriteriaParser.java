@@ -34,10 +34,6 @@ public class CriteriaParser {
     operatorString = Joiner.on("|").join(l.toArray());
   }
 
-  // private static Pattern specificationCriteriaRegex = Pattern.compile("^([
-  // A-Za-z0-9_-]*)(" +
-  // Joiner.on("|").join(SearchOperators.SIMPLE_OPERATION_SET) +
-  // ")(\\p{Punct}?)([ A-Za-z0-9_-]*)(\\p{Punct}?)$");
   private static Pattern specificationCriteriaRegex =
       Pattern.compile("^([A-Za-z0-9_\\.-]*)(" + operatorString + ")([ A-Za-z0-9_\\.,'-\\[\\]]*)$");
 
@@ -99,13 +95,12 @@ public class CriteriaParser {
           String str1 = specificationCriteriaRegex.toString();
           final Matcher matcher = specificationCriteriaRegex.matcher(token);
           final String str = specificationCriteriaRegex.toString();
-          // ^(\w+?)(:|!|>|<|~)(\p{Punct}?)(\w+?)(\p{Punct}?)$
+
           boolean f = matcher.find();
           if (f) {
             String gp1 = matcher.group(1);
             String gp2 = matcher.group(2);
             String gp3 = matcher.group(3);;
-            String str2 = gp3;
             output.push(criteriaCreator.create(gp1.trim(), gp2.trim(), "",
                 gp3.replaceAll("'|\\[|\\]|^\\s+|\\s+$", "").trim(), ""));
           }

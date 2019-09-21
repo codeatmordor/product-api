@@ -1,6 +1,3 @@
-
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gk.gfg.product.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    // configure AuthenticationManager so that it knows from where to load
-    // user for matching credentials
-    // Use BCryptPasswordEncoder
     auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
   }
 
@@ -54,12 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    // We don't need CSRF for this example
-    httpSecurity.csrf().disable()
-        // dont authenticate this particular request
-        .authorizeRequests().antMatchers("/authenticate", "/register").permitAll().
-        // all other requests need to be authenticated
-        anyRequest().authenticated().and().
+    httpSecurity.csrf().disable().authorizeRequests()
+        .antMatchers("/gfg/v1/authenticate", "/gfg/v1/register").permitAll().anyRequest()
+        .authenticated().and().
         // make sure we use stateless session; session won't be used to
         // store user's state.
         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()

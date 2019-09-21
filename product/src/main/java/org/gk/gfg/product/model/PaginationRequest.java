@@ -1,11 +1,5 @@
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gk.gfg.product.model;
 
-/**
- * @author Gaurav_Singh3
- *
- */
 public class PaginationRequest {
 
   private int limit;
@@ -27,7 +21,7 @@ public class PaginationRequest {
   }
 
   /**
-   * 
+   *
    */
   public PaginationRequest() {
 

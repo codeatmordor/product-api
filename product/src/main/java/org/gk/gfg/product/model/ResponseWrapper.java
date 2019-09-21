@@ -1,5 +1,3 @@
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gk.gfg.product.model;
 
 import java.io.Serializable;
@@ -7,16 +5,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-/**
- * @author Gaurav_Singh3
- *
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseWrapper<T> implements Serializable {
 
   /**
-   * 
+   *
    */
   private static final long serialVersionUID = -3831793168206741231L;
   private Long count;
@@ -54,7 +48,7 @@ public class ResponseWrapper<T> implements Serializable {
   }
 
   /**
-   * 
+   *
    */
   public ResponseWrapper() {
     super();

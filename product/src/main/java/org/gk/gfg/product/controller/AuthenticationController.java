@@ -34,7 +34,7 @@ public class AuthenticationController {
   @Autowired
   private UserService userDetailsService;
 
-  @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+  @RequestMapping(value = "/gfg/v1/authenticate", method = RequestMethod.POST)
   public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
       throws Exception {
 
@@ -48,7 +48,7 @@ public class AuthenticationController {
     return ResponseEntity.ok(new JwtResponse(token));
   }
 
-  @RequestMapping(value = "/register", method = RequestMethod.POST)
+  @RequestMapping(value = "/gfg/v1/register", method = RequestMethod.POST)
   public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
     return ResponseEntity.ok(userDetailsService.save(user));
   }

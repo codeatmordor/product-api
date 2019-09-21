@@ -1,4 +1,4 @@
-FROM openjdk:8-windowsservercore
+FROM openjdk:8-nanoserver
 
 LABEL maintainer="gaurav.bhu3790@gmail.com"
 

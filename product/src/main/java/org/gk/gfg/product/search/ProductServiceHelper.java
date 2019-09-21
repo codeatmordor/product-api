@@ -1,19 +1,11 @@
 package org.gk.gfg.product.search;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.apache.commons.lang3.StringUtils;
 import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.PaginationRequest;
 import org.gk.gfg.product.model.SearchProductDto;
-import org.hibernate.Session;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -50,50 +42,4 @@ public class ProductServiceHelper {
         : new OffsetBasedPageRequest(paginationRequest.getOffset(), paginationRequest.getLimit());
     return pageable;
   }
-
-  @SuppressWarnings("unchecked")
-  public static CriteriaQuery getDefaultCriteria(final Integer customerDomainId,
-      @SuppressWarnings("rawtypes") final Class entityClass, final Session session,
-      final Boolean deleted, final Integer offset, final Integer limit, final String orderBy,
-      final String sortBy) {
-    // Create CriteriaBuilder
-    final CriteriaBuilder builder = session.getCriteriaBuilder();
-
-    // Create CriteriaQuery
-    final CriteriaQuery criteriaQuery = builder.createQuery(entityClass);
-    //
-    final Root root = criteriaQuery.from(entityClass);
-    criteriaQuery.select(root);
-    if (StringUtils.isEmpty(orderBy) && StringUtils.isEmpty(sortBy))
-      criteriaQuery.orderBy(builder.asc(root.get("created")));
-
-    if (StringUtils.isNotEmpty(sortBy)) {
-      if (StringUtils.isEmpty(orderBy) || "ASC".equalsIgnoreCase(orderBy))
-        criteriaQuery.orderBy(builder.asc(root.get(sortBy)));
-      else if ("DESC".equalsIgnoreCase(orderBy))
-        criteriaQuery.orderBy(builder.desc(root.get(sortBy)));
-      else
-        criteriaQuery.orderBy(builder.asc(root.get("created")));
-    }
-
-    if (Objects.nonNull(customerDomainId))
-      criteriaQuery.where(builder.equal(root.get("customer_domain_id"), customerDomainId));
-
-    if (Objects.nonNull(deleted))
-      criteriaQuery.where(builder.equal(root.get("deleted"), deleted));
-    return criteriaQuery;
-  }
-
-  public static Timestamp convertToTimestamp(final String date) throws ProductServiceException {
-    if (date == null || date.isEmpty()) {
-      return null;
-    }
-    final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    try {
-      return new Timestamp(dateFormat.parse(date).getTime());
-    } catch (final ParseException parseException) {
-      throw new ProductServiceException("invalid.date.format");
-    }
-  }
-
 }
