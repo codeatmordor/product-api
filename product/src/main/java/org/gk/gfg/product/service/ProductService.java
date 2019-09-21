@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
-import org.gk.gfg.product.exception.ProductNotFoundException;
+import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.PaginationRequest;
 import org.gk.gfg.product.model.Product;
 import org.gk.gfg.product.model.ProductEntity;
@@ -48,17 +48,17 @@ public class ProductService {
     }
   }
 
-  public Product get(final String productId) throws ProductNotFoundException {
+  public Product get(final String productId) throws ProductServiceException {
     if (StringUtils.isBlank(productId))
-      throw new ProductNotFoundException("invalid.input");
+      throw new ProductServiceException("invalid.input");
     final Optional<ProductEntity> entities = productRepo.findById(productId);
     return new Product(entities.get());
   }
 
   public Product update(final Product product, final String productId)
-      throws ProductNotFoundException {
+      throws ProductServiceException {
     if (StringUtils.isBlank(productId))
-      throw new ProductNotFoundException("invalid.input");
+      throw new ProductServiceException("invalid.input");
     final Optional<ProductEntity> entities = productRepo.findById(productId);
     if (entities.isPresent()) {
       ProductEntity retrievedEntity = entities.get();
@@ -66,20 +66,20 @@ public class ProductService {
       final ProductEntity updatedEntity = productRepo.save(retrievedEntity);
       return new Product(updatedEntity);
     } else {
-      throw new ProductNotFoundException("product.not.found");
+      throw new ProductServiceException("product.not.found");
     }
   }
 
-  public Set<Product> update(final Set<Product> products) throws ProductNotFoundException {
+  public Set<Product> update(final Set<Product> products) throws ProductServiceException {
     if (products == null || products.isEmpty())
-      throw new ProductNotFoundException("invalid.input");
+      throw new ProductServiceException("invalid.input");
     final Set<String> productIds = new HashSet<>();
     products.stream().forEach(v -> productIds.add(v.getProductId()));
 
 
     final List<ProductEntity> productEntities = productRepo.findAllById(productIds);
     if (productEntities.size() == 0) {
-      throw new ProductNotFoundException("entity.not.found");
+      throw new ProductServiceException("entity.not.found");
     }
     for (final ProductEntity entity : productEntities) {
       final Product product = products.stream()
@@ -94,21 +94,21 @@ public class ProductService {
   }
 
   public ResponseWrapper<Product> findProduct(final SearchProductDto searchDto,
-      final PaginationRequest paginationRequest) throws ProductNotFoundException {
+      final PaginationRequest paginationRequest) throws ProductServiceException {
     final String whereClause = searchDto.getWhere();
     final ResponseWrapper<Product> res = search(searchDto, paginationRequest, whereClause);
     return res;
   }
 
-  public void delete(final String productId) throws ProductNotFoundException {
+  public void delete(final String productId) throws ProductServiceException {
     if (StringUtils.isBlank(productId))
-      throw new ProductNotFoundException("invalid.input");
+      throw new ProductServiceException("invalid.input");
     productRepo.deleteById(productId);
   }
 
   private ResponseWrapper<Product> search(final SearchProductDto search,
       final PaginationRequest paginationRequest, final String searchClause)
-      throws ProductNotFoundException {
+      throws ProductServiceException {
     try {
       final Pageable pageable = ProductServiceHelper.preparePageable(search, paginationRequest);
       final Specification<ProductEntity> spec = ProductServiceHelper

@@ -3,6 +3,7 @@ package org.gk.gfg.product.controller;
 import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
+import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.PaginationRequest;
 import org.gk.gfg.product.model.Product;
 import org.gk.gfg.product.model.ResponseWrapper;
@@ -38,6 +39,10 @@ public class ProductController {
 
   @PostMapping(path = "/products", consumes = APPLICATION_JSON)
   public ResponseEntity<List<Product>> create(@Valid @RequestBody final List<Product> products) {
+    if (products == null || products.isEmpty())
+      throw new ProductServiceException("invalid.argument");
+    if (products.size() > 1000)
+      throw new ProductServiceException("api.limit.exceeded");
     return new ResponseEntity<>(productService.create(products), HttpStatus.CREATED);
   }
 

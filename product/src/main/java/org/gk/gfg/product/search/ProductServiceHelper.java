@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.apache.commons.lang3.StringUtils;
-import org.gk.gfg.product.exception.ProductNotFoundException;
+import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.PaginationRequest;
 import org.gk.gfg.product.model.SearchProductDto;
 import org.hibernate.Session;
@@ -22,7 +22,7 @@ import org.springframework.data.jpa.domain.Specification;
 public class ProductServiceHelper {
   public static <T> Specification<T> resolveSpecification(final String searchParameters,
       final SpecificationSearchCriteriaCreator specSearchCriteriaCreator)
-      throws ProductNotFoundException {
+      throws ProductServiceException {
     final CriteriaParser criteriaParser = new CriteriaParser();
     final ProductSpecificationBuilder<T> specificationBuilder = new ProductSpecificationBuilder<>();
     return specificationBuilder.build(
@@ -84,7 +84,7 @@ public class ProductServiceHelper {
     return criteriaQuery;
   }
 
-  public static Timestamp convertToTimestamp(final String date) throws ProductNotFoundException {
+  public static Timestamp convertToTimestamp(final String date) throws ProductServiceException {
     if (date == null || date.isEmpty()) {
       return null;
     }
@@ -92,7 +92,7 @@ public class ProductServiceHelper {
     try {
       return new Timestamp(dateFormat.parse(date).getTime());
     } catch (final ParseException parseException) {
-      throw new ProductNotFoundException("invalid.date.format");
+      throw new ProductServiceException("invalid.date.format");
     }
   }
 

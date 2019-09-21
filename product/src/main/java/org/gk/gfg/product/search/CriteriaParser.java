@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.gk.gfg.product.exception.ProductNotFoundException;
+import org.gk.gfg.product.exception.ProductServiceException;
 import com.google.common.base.Joiner;
 import lombok.extern.log4j.Log4j2;
 
@@ -65,13 +65,13 @@ public class CriteriaParser {
   }
 
   public Deque<?> parse(final String searchParam,
-      final SpecificationSearchCriteriaCreator criteriaCreator) throws ProductNotFoundException {
+      final SpecificationSearchCriteriaCreator criteriaCreator) throws ProductServiceException {
 
     final Deque<Object> output = new LinkedList<>();
     final Deque<String> stack = new LinkedList<>();
     try {
       if (!isQueryStringValueBalance(searchParam.trim())) {
-        throw new ProductNotFoundException("where.clause.invalid");
+        throw new ProductServiceException("where.clause.invalid");
       }
       // System.out.println(specificationCriteriaRegex);
       final String modSearchParam = searchParam.replace("(", "~#~(~#~").replace(")", "~#~)~#~")
@@ -119,12 +119,12 @@ public class CriteriaParser {
 
       while (!stack.isEmpty())
         output.push(stack.pop());
-    } catch (final ProductNotFoundException tex) {
+    } catch (final ProductServiceException tex) {
       throw tex;
     } catch (final Exception ex) {
       // log.error("Failed to parse where clause : {}", searchParam);
       // log.catching(ex);
-      throw new ProductNotFoundException("criteria.specification.creation.failed");
+      throw new ProductServiceException("criteria.specification.creation.failed");
     }
 
     return output;

@@ -21,9 +21,9 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
-  @ExceptionHandler(ProductNotFoundException.class)
+  @ExceptionHandler(ProductServiceException.class)
   public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(
-      ProductNotFoundException ex, WebRequest request) {
+      ProductServiceException ex, WebRequest request) {
     ExceptionResponse exceptionResponse =
         new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
     return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
