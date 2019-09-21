@@ -109,17 +109,22 @@ public class ProductService {
   private ResponseWrapper<Product> search(final SearchProductDto search,
       final PaginationRequest paginationRequest, final String searchClause)
       throws ProductNotFoundException {
-    final Pageable pageable = ProductServiceHelper.preparePageable(search, paginationRequest);
-    final Specification<ProductEntity> spec = ProductServiceHelper
-        .<ProductEntity>resolveSpecification(searchClause, specSearchCriteriaCreator);
-    final Page<ProductEntity> obtainedEntities = productRepo.findAll(spec, pageable);
-    final List<Product> results = new ArrayList<>();
-    obtainedEntities.stream().forEach(o -> results.add(new Product(o)));
-    final ResponseWrapper<Product> res = new ResponseWrapper<>();
-    final Long count = paginationRequest.isIncludeCount() ? productRepo.count(spec) : null;
-    res.setCount(count);
-    res.setResult(results);
-    return res;
+    try {
+      final Pageable pageable = ProductServiceHelper.preparePageable(search, paginationRequest);
+      final Specification<ProductEntity> spec = ProductServiceHelper
+          .<ProductEntity>resolveSpecification(searchClause, specSearchCriteriaCreator);
+      final Page<ProductEntity> obtainedEntities = productRepo.findAll(spec, pageable);
+      final List<Product> results = new ArrayList<>();
+      obtainedEntities.stream().forEach(o -> results.add(new Product(o)));
+      final ResponseWrapper<Product> res = new ResponseWrapper<>();
+      final Long count = paginationRequest.isIncludeCount() ? productRepo.count(spec) : null;
+      res.setCount(count);
+      res.setResult(results);
+      return res;
+    } catch (Exception e) {
+      String s = e.getMessage();
+      return null;
+    }
   }
 
 

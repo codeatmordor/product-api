@@ -63,7 +63,7 @@ public class ProductController {
     return new ResponseEntity<>(productService.update(products), HttpStatus.ACCEPTED);
   }
 
-  @GetMapping(produces = APPLICATION_JSON)
+  @GetMapping(path = "/products", produces = APPLICATION_JSON)
   public ResponseEntity<ResponseWrapper<Product>> search(
       @RequestParam(name = "where", required = false) final String where,
       @RequestParam(name = "limit", required = false, defaultValue = "1000") final int limit,

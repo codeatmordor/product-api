@@ -96,14 +96,24 @@ public class CriteriaParser {
             output.push(stack.pop());
           stack.pop();
         } else {
-
+          String str1 = specificationCriteriaRegex.toString();
           final Matcher matcher = specificationCriteriaRegex.matcher(token);
           final String str = specificationCriteriaRegex.toString();
           // ^(\w+?)(:|!|>|<|~)(\p{Punct}?)(\w+?)(\p{Punct}?)$
-          while (matcher.find()) {
-            output.push(criteriaCreator.create(matcher.group(1).trim(), matcher.group(2).trim(), "",
-                matcher.group(3).replaceAll("'|\\[|\\]|^\\s+|\\s+$", "").trim(), ""));
+          boolean f = matcher.find();
+          if (f) {
+            String gp1 = matcher.group(1);
+            String gp2 = matcher.group(2);
+            String gp3 = matcher.group(3);;
+            String str2 = gp3;
+            output.push(criteriaCreator.create(gp1.trim(), gp2.trim(), "",
+                gp3.replaceAll("'|\\[|\\]|^\\s+|\\s+$", "").trim(), ""));
           }
+          /*
+           * while (matcher.find()) { output.push(criteriaCreator.create(matcher.group(1).trim(),
+           * matcher.group(2).trim(), "", matcher.group(3).replaceAll("'|\\[|\\]|^\\s+|\\s+$",
+           * "").trim(), "")); }
+           */
         }
       });
 

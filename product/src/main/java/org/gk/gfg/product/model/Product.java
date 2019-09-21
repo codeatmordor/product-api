@@ -6,12 +6,11 @@ package org.gk.gfg.product.model;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Product {
+
 
   private String productId;
   private String title;
@@ -21,6 +20,11 @@ public class Product {
   private String brand;
   private Date created;
   private Date modified;
+
+  public Product() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
   /**
    * @param productId

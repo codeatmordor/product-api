@@ -10,7 +10,7 @@ public class ProductSpecificationHelper {
 
   public Predicate createPredicate(final Root<?> root, final CriteriaBuilder builder,
       final SpecificationSearchCriteria criteria) {
-    Expression<String> path = null;
+    Expression<String> path = root.get(criteria.getKey());
     switch (criteria.getOperation()) {
       case EQUAL:
         return builder.equal(path, criteria.getValue());

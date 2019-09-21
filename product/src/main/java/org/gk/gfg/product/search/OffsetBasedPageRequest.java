@@ -9,9 +9,6 @@ import org.springframework.data.domain.Sort;
 
 public class OffsetBasedPageRequest implements Pageable, Serializable {
 
-  /**
-   *
-   */
   private static final long serialVersionUID = 75537429454724575L;
   private final int limit;
   private final long offset;
@@ -30,8 +27,8 @@ public class OffsetBasedPageRequest implements Pageable, Serializable {
     this.sort = sort;
   }
 
-  public OffsetBasedPageRequest(final int offset, final int limit,
-      final Sort.Direction direction, final String... properties) {
+  public OffsetBasedPageRequest(final int offset, final int limit, final Sort.Direction direction,
+      final String... properties) {
     this(offset, limit, new Sort(direction, properties));
   }
 

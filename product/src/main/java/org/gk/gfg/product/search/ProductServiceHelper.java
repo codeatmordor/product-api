@@ -20,8 +20,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 
 public class ProductServiceHelper {
-
-
   public static <T> Specification<T> resolveSpecification(final String searchParameters,
       final SpecificationSearchCriteriaCreator specSearchCriteriaCreator)
       throws ProductNotFoundException {
@@ -31,7 +29,6 @@ public class ProductServiceHelper {
         criteriaParser.parse(searchParameters, specSearchCriteriaCreator),
         ProductSpecification<T>::new);
   }
-
 
   public static Pageable preparePageable(final SearchProductDto searchDto,
       PaginationRequest paginationRequest) {
@@ -84,8 +81,6 @@ public class ProductServiceHelper {
 
     if (Objects.nonNull(deleted))
       criteriaQuery.where(builder.equal(root.get("deleted"), deleted));
-
-
     return criteriaQuery;
   }
 

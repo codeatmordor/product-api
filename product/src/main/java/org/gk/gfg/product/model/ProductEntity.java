@@ -67,6 +67,14 @@ public class ProductEntity {
     this.modified = product.getModified();
   }
 
+  /**
+   *
+   */
+  public ProductEntity() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
+
   @Column(name = "price")
   private int price;
 

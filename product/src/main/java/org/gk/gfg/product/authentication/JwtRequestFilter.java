@@ -1,6 +1,3 @@
-
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gk.gfg.product.authentication;
 
 import java.io.IOException;

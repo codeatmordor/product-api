@@ -1,4 +1,3 @@
-
 package org.gk.gfg.product.search;
 
 import java.util.ArrayList;
@@ -16,11 +15,7 @@ public class SpecificationSearchCriteriaCreatorImpl implements SpecificationSear
   @Override
   public SpecificationSearchCriteria create(final String key, final String operation,
       final String prefix, final String value, final String suffix) {
-    // TagSearchField tagSearchField = getField(key);
     Class<?> type = String.class;
-    if (key.equalsIgnoreCase("deleted") || key.equalsIgnoreCase("updated")) {
-      type = Boolean.class;
-    }
     SearchOperators op = SearchOperators.getSimpleOperation(operation);
     if (op == SearchOperators.EQUAL) {
       final boolean startWithAsterisk =
@@ -38,7 +33,6 @@ public class SpecificationSearchCriteriaCreatorImpl implements SpecificationSear
     }
     final Object objValue = prepareSpecificatoinSearchCriteria(key, type, op, value);
     final SpecificationSearchCriteria criteria = new SpecificationSearchCriteria(key, op, objValue);
-
     return criteria;
   }
 
@@ -80,7 +74,6 @@ public class SpecificationSearchCriteriaCreatorImpl implements SpecificationSear
       }
       return parseObject(key, value);
     }
-
   }
 
   private Object parseObject(final String key, final String value) {
