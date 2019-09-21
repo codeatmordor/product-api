@@ -1,13 +1,13 @@
-
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gk.gfg.product.model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -27,6 +27,13 @@ public class ProductEntity {
 
   @Column(name = "description")
   private String description;
+
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date created = new Date();
+
+
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date modified = new Date();
 
   /**
    * @param product_id
@@ -56,6 +63,8 @@ public class ProductEntity {
     this.description = product.getDescription();
     this.price = product.getPrice();
     this.color = product.getColor();
+    this.created = product.getCreated();
+    this.modified = product.getModified();
   }
 
   @Column(name = "price")
@@ -204,6 +213,38 @@ public class ProductEntity {
    */
   public void setColor(String color) {
     this.color = color;
+  }
+
+
+  /**
+   * @return the created
+   */
+  public Date getCreated() {
+    return created;
+  }
+
+
+  /**
+   * @param created the created to set
+   */
+  public void setCreated(Date created) {
+    this.created = created;
+  }
+
+
+  /**
+   * @return the modified
+   */
+  public Date getModified() {
+    return modified;
+  }
+
+
+  /**
+   * @param modified the modified to set
+   */
+  public void setModified(Date modified) {
+    this.modified = modified;
   }
 
 
