@@ -16,7 +16,7 @@ public class Product {
   private String productId;
   private String title;
   private String description;
-  private String color;
+  private ProductColor color;
   private Integer price;
   private String brand;
   private Date created;
@@ -94,14 +94,14 @@ public class Product {
   /**
    * @return the color
    */
-  public String getColor() {
+  public ProductColor getColor() {
     return color;
   }
 
   /**
    * @param color the color to set
    */
-  public void setColor(String color) {
+  public void setColor(ProductColor color) {
     this.color = color;
   }
 

@@ -3,12 +3,15 @@ package org.gk.gfg.product.entity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.gk.gfg.product.model.Product;
+import org.gk.gfg.product.model.ProductColor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -45,7 +48,7 @@ public class ProductEntity {
    * @param color
    */
   public ProductEntity(String product_id, String title, String brand, String description, int price,
-      String color) {
+      ProductColor color) {
     super();
     this.product_id = product_id;
     this.title = title;
@@ -79,8 +82,11 @@ public class ProductEntity {
   @Column(name = "price")
   private int price;
 
-  @Column(name = "color")
-  private String color;
+
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "color", length = 8)
+  private ProductColor color;
 
   @Override
   public int hashCode() {
@@ -213,14 +219,14 @@ public class ProductEntity {
   /**
    * @return the color
    */
-  public String getColor() {
+  public ProductColor getColor() {
     return color;
   }
 
   /**
    * @param color the color to set
    */
-  public void setColor(String color) {
+  public void setColor(ProductColor color) {
     this.color = color;
   }
 

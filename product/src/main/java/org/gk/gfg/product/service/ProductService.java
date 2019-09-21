@@ -123,7 +123,7 @@ public class ProductService {
       return res;
     } catch (Exception e) {
       String s = e.getMessage();
-      return null;
+      return new ResponseWrapper<>();
     }
   }
 
@@ -137,7 +137,7 @@ public class ProductService {
       entity.setDescription(product.getDescription());
     if (product.getPrice() != null)
       entity.setPrice(product.getPrice());
-    if (StringUtils.isNotBlank(product.getColor()))
+    if (StringUtils.isNotBlank(product.getColor().name()))
       entity.setColor(product.getColor());
     entity.setModified(new Date());
   }
