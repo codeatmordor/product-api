@@ -4,6 +4,7 @@
 package org.gk.gfg.product.model;
 
 import java.util.Date;
+import org.gk.gfg.product.entity.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

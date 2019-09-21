@@ -1,8 +1,8 @@
 package org.gk.gfg.product.service;
 
 import java.util.ArrayList;
+import org.gk.gfg.product.entity.UserEntity;
 import org.gk.gfg.product.model.User;
-import org.gk.gfg.product.model.UserEntity;
 import org.gk.gfg.product.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

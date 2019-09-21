@@ -1,4 +1,4 @@
-package org.gk.gfg.product.model;
+package org.gk.gfg.product.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.gk.gfg.product.model.Product;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity

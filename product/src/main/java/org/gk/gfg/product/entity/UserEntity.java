@@ -1,4 +1,4 @@
-package org.gk.gfg.product.model;
+package org.gk.gfg.product.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
