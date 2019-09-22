@@ -34,15 +34,16 @@
  2. mvn clean install
  3. Open Powershell on windows
  4. cd /product
- 5. Use below Docker Commands to build docker image of our product service
+ 5. Use below docker commands to build docker image of our product service. Use second command to deploy image and third command to get status of running container.
  - **Build Docker Image:** 
      ```bash
      docker build -t productservice:v1.0 .
      docker run -d -p 8086:8086 productservice:v1.0
+	 docker inspect <containerid>
    ```
 
  6. Product service now running on http://localhost:8086/
- 7. Import Postman Collection from */postman collection/GFG Product.postman_collection.json* to Postman
+ 7. Import Postman Collection from */product/postman collection/GFG Product.postman_collection.json* to Postman
  8. Use APIs under GFG Product 
  
  
