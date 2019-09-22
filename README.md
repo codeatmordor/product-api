@@ -6,6 +6,9 @@
 3. Pageable inteface is used for providing pagination.
 4. Product color value is limit to [BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW] Only.
 5. JWT based authentication is used for token-based API security.
+
+![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/JWT-based-auth.png)
+
 6. Token expires after 5 hours.
 7. Windows based nanoserver image is used for docker base-image.
 8. Port 8086 is exposed for docker container
