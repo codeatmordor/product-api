@@ -36,6 +36,9 @@ public class ProductService {
   private SpecificationSearchCriteriaCreator specSearchCriteriaCreator;
 
   public List<Product> create(final List<Product> products) {
+    if (products == null || products.isEmpty()) {
+      throw new ProductServiceException("Product List is Blank.");
+    }
     try {
       List<ProductEntity> productEntities = new ArrayList<>();
       for (Product product : products) {
