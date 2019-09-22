@@ -40,12 +40,75 @@
  
  ## APIs
  1. Register User with Product Service
+   ```bash
+   curl --location --request POST "http://localhost:8086/gfg/v1/register" \
+  --header "Content-Type: application/json" \
+  --data "{
+  	\"username\":\"gaurav\",
+	  \"password\":\"pass@123\"
+  }
+   ```
  2. Get Authentication Token
+   ```bash
+ curl --location --request POST "http://localhost:8086/gfg/v1/authenticate" \
+  --header "Content-Type: application/json" \
+  --data "{
+	\"username\":\"gaurav\",
+	\"password\":\"pass@123\"
+}
+ ```
+ 
  3. Create Products
- 4. Get Products
- 5. Update Products
- 6. Search Product
+ ```bash
+ curl --location --request POST "http://localhost:8086/gfg/v1/products" \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDQ4NDQsImlhdCI6MTU2OTEyNjg0NH0.icpNugho6CrExgPvYN0eA4uyWXbLXwqbWAsWXMwpluqPcoo_kpJQEleEwySpa0cl7-cOtXxfoqZ3xC6r5BJMPw" \
+  --data "[{
+	\"title\":\"phone1\",
+	\"description\":\"New Phone1\",
+	\"color\":\"RED\",
+  \"price\":200,
+  \"brand\":\"samsung\"
+},{
+	\"title\":\"phone2\",
+	\"description\":\"New Phone2\",
+	\"color\":\"BLUE\",
+  \"price\":300,
+  \"brand\":\"samsung\"
+}]
+ ```
+ 
+ 4. Get Product
+  ```bash
+ curl --location --request GET "http://localhost:8085/gfg/v1/products/2c9820816d54e637016d54e681440000" \
+  --header "Content-Type: application/json" \
+  --header "Accept: application/json" \
+  --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw" \
+  --data ""
+    ```
+     
+ 5. Update Product
+ ```bash
+ curl --location --request PUT "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000" \
+  --header "Content-Type: application/json" \
+  --header "Accept: application/json" \
+  --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA" \
+  --data "  {
+        \"productId\": \"2c9820816d554d14016d554d4a390000\",
+        \"title\": \"phone1\",
+        \"description\": \"New Phone11\",
+        \"color\": \"red\",
+        \"price\": 200,
+        \"brand\": \"samsung\"
+    }
+     ```
+     
+ 6. Update Products
  7. Delete Product
+ 8. Search Product By Title
+ 9. Search Product By Description
+ 10. Sort product by price
+ 11. Pagination Request
  
  ## API Documentation:
  APIs are property documented using Postman and documentation can be accessed after importing collection to PostMan and Using 'View in Web' Option
