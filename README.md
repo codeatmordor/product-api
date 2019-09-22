@@ -9,9 +9,10 @@
 
 ![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/JWT-based-auth.png)
 
-6. Token expires after 5 hours.
-7. Windows based nanoserver image is used for docker base-image.
+6. Token expires after *5 hours*.
+7. Windows based *nanoserver* image is used for docker base-image.
 8. Port 8086 is exposed for docker container
+9. For persistance of User and Products in memory *H2 Database* is used.
 
 
 ## Build and Run Instructions
@@ -34,7 +35,7 @@
    ```
 
  6. Product service now running on http://localhost:8086/
- 7. Import Postman Collection from /postman collection/GFG Product.postman_collection.json to Postman
+ 7. Import Postman Collection from */postman collection/GFG Product.postman_collection.json* to Postman
  8. Use APIs under GFG Product 
  
  
