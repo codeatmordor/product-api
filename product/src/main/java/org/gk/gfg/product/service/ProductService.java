@@ -16,6 +16,8 @@ import org.gk.gfg.product.model.SearchProductDto;
 import org.gk.gfg.product.repository.ProductRepository;
 import org.gk.gfg.product.search.ProductServiceHelper;
 import org.gk.gfg.product.search.SpecificationSearchCriteriaCreator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +26,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
+
+  private static Logger logger = LoggerFactory.getLogger(ProductService.class);
 
   @Autowired
   private ProductRepository productRepo;
@@ -44,7 +48,8 @@ public class ProductService {
       createdEntities.stream().forEach(c -> res.add(new Product(c)));
       return res;
     } catch (final Exception e) {
-      return null;
+      logger.error("Exception while creating products. ", e);
+      return new ArrayList<>();
     }
   }
 
@@ -66,6 +71,7 @@ public class ProductService {
       final ProductEntity updatedEntity = productRepo.save(retrievedEntity);
       return new Product(updatedEntity);
     } else {
+      logger.error("No products found for given id " + productId);
       throw new ProductServiceException("product.not.found");
     }
   }
@@ -122,8 +128,8 @@ public class ProductService {
       res.setResult(results);
       return res;
     } catch (Exception e) {
-      String s = e.getMessage();
-      return new ResponseWrapper<>();
+      logger.error("Exception occured while searching product.", e);
+      throw new ProductServiceException("Seaching of Product failed, error " + e.getMessage());
     }
   }
 

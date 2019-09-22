@@ -11,12 +11,17 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.gk.gfg.product.exception.ProductServiceException;
+import org.gk.gfg.product.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.common.base.Joiner;
 import lombok.extern.log4j.Log4j2;
 
 
 @Log4j2
 public class CriteriaParser {
+
+  private static Logger log = LoggerFactory.getLogger(ProductService.class);
   private static Map<String, Operator> ops;
 
   private static String operatorString;
@@ -69,14 +74,12 @@ public class CriteriaParser {
       if (!isQueryStringValueBalance(searchParam.trim())) {
         throw new ProductServiceException("where.clause.invalid");
       }
-      // System.out.println(specificationCriteriaRegex);
+
       final String modSearchParam = searchParam.replace("(", "~#~(~#~").replace(")", "~#~)~#~")
           .replace(" or ", "~#~or~#~").replace(" OR ", "~#~OR~#~").replace(" and ", "~#~and~#~")
           .replace(" AND ", "~#~AND~#~");
       Arrays.stream(modSearchParam.split("~#~")).forEach(token -> {
         token = token.trim();
-        // System.out.println("TOKEN : " +token);
-        // Arrays.stream(searchParam.split("\\s+")).forEach(token -> {
         if (ops.containsKey(token)) {
           while (!stack.isEmpty() && isHigherPrecedenceOperator(token, stack.peek()))
             output.push(stack.pop().equalsIgnoreCase(SearchOperators.OR_OPERATOR)
@@ -92,10 +95,7 @@ public class CriteriaParser {
             output.push(stack.pop());
           stack.pop();
         } else {
-          String str1 = specificationCriteriaRegex.toString();
           final Matcher matcher = specificationCriteriaRegex.matcher(token);
-          final String str = specificationCriteriaRegex.toString();
-
           boolean f = matcher.find();
           if (f) {
             String gp1 = matcher.group(1);
@@ -117,11 +117,10 @@ public class CriteriaParser {
     } catch (final ProductServiceException tex) {
       throw tex;
     } catch (final Exception ex) {
-      // log.error("Failed to parse where clause : {}", searchParam);
-      // log.catching(ex);
+      log.error("Failed to parse where clause : {}", searchParam);
+      log.error("Error Stack Trace : {}", ex);
       throw new ProductServiceException("criteria.specification.creation.failed");
     }
-
     return output;
   }
 
@@ -141,11 +140,11 @@ public class CriteriaParser {
           }
         }
       } catch (final Exception ex) {
-        // LOGGER.error("Query string value not balanced : {}", ex.getMessage());
+        log.error("Query string value not balanced : {}", ex.getMessage());
         return false;
       }
       if (bracStack.size() > 0 | quotesList.size() % 2 != 0) {
-        // LOGGER.debug("brackets or quotes not matching");
+        log.debug("brackets or quotes not matching");
         return false;
       }
     }

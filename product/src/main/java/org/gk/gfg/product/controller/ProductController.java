@@ -9,6 +9,8 @@ import org.gk.gfg.product.model.Product;
 import org.gk.gfg.product.model.ResponseWrapper;
 import org.gk.gfg.product.model.SearchProductDto;
 import org.gk.gfg.product.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/gfg/v1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ProductController {
 
+  private static Logger logger = LoggerFactory.getLogger(ProductController.class);
+
   @Value("${bulk.request.limit:1000}")
   private Integer limit;
 
@@ -39,10 +43,14 @@ public class ProductController {
 
   @PostMapping(path = "/products", consumes = APPLICATION_JSON)
   public ResponseEntity<List<Product>> create(@Valid @RequestBody final List<Product> products) {
-    if (products == null || products.isEmpty())
+    if (products == null || products.isEmpty()) {
+      logger.error("Requestbody is empty");
       throw new ProductServiceException("invalid.argument");
-    if (products.size() > limit)
+    }
+    if (products.size() > limit) {
+      logger.error("Request size exceeds limit " + limit);;
       throw new ProductServiceException("api.limit.exceeded");
+    }
     return new ResponseEntity<>(productService.create(products), HttpStatus.CREATED);
   }
 
