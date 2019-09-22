@@ -183,4 +183,8 @@ curl -X GET \
 More details about each API is documented under Postman Collection */product/postman collection/GFG Product.postman_collection.json*, once collection is imported in Postman, **View in Web** Option of **GFG Product** Collection should be used to read documentation. 
 
 ![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/Postman-documentation.png)
+
+### API Documenation Screenshot
+
+![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/documentation-example.png)
      
