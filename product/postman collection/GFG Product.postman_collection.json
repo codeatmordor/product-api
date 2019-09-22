@@ -39,7 +39,7 @@
 						"register"
 					]
 				},
-				"description": "Register User with Product Service. This API accepts username and password in request body."
+				"description": "<h4>Register User with Product Service.</h4>\n<p>This API accepts username and password in request body.</p>"
 			},
 			"response": []
 		},
@@ -71,7 +71,7 @@
 						"authenticate"
 					]
 				},
-				"description": "This API generate authentication token for registered user."
+				"description": "<h4>This API generate authentication token for registered user.</h4>"
 			},
 			"response": []
 		},
@@ -108,7 +108,7 @@
 						"products"
 					]
 				},
-				"description": "Create Product API. This API accepts List of products, this API has a limit of 1000 products.\n\nSample Request Body :\n[\n{\n\t\"title\":\"phone2\",\n\t\"description\":\"New Phone2\",\n\t\"color\":\"BLUE\",\n    \"price\":300,\n    \"brand\":\"samsung\"\n}\n]\n\ncolor of product can be any of following values:\nBLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request"
+				"description": "<h4>Create Products</h4>\n<p>This API accepts List of products, this API has a limit of 1000 products.</p>\n\nSample Request Body :\n<code>[\n{\n\t\"title\":\"phone2\",\n\t\"description\":\"New Phone2\",\n\t\"color\":\"BLUE\",\n    \"price\":300,\n    \"brand\":\"samsung\"\n}\n]</code>\n\n<p>color of product can be any of following values:\nBLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request</p>"
 			},
 			"response": []
 		},
@@ -130,7 +130,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"productId\": \"2c9820816d575efd016d575f31110002\",\r\n        \"title\": \"phone3\",\r\n        \"description\": \"New Phone3\",\r\n        \"color\": \"CUP\",\r\n        \"price\": 400,\r\n        \"brand\": \"samsung\"\r\n }"
+					"raw": " {\r\n        \"productId\": \"2c9820816d575efd016d575f31110002\",\r\n        \"title\": \"phone3\",\r\n        \"description\": \"New Phone3\",\r\n        \"color\": \"RED\",\r\n        \"price\": 400,\r\n        \"brand\": \"samsung\"\r\n }"
 				},
 				"url": {
 					"raw": "http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f31110002",
@@ -146,94 +146,9 @@
 						"2c9820816d575efd016d575f31110002"
 					]
 				},
-				"description": "Update Product API.\n\ncolor of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request"
+				"description": "<h4>Update Product by product id.</h4>\n\n<p>color of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request</p>"
 			},
-			"response": [
-				{
-					"name": "Update Product",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
-						},
-						"url": {
-							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"gfg",
-								"v1",
-								"products",
-								"2c9820816d554d14016d554d4a390000"
-							]
-						}
-					},
-					"status": "Accepted",
-					"code": 202,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 21 Sep 2019 19:30:31 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"productId\": \"2c9820816d554d14016d554d4a390000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone11\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T19:29:51.668+0000\",\n    \"modified\": \"2019-09-21T19:30:31.772+0000\"\n}"
-				}
-			]
+			"response": []
 		},
 		{
 			"name": "Delete Product",
@@ -269,94 +184,9 @@
 						"2c9820816d575efd016d575f31110002"
 					]
 				},
-				"description": "Update Product API."
+				"description": "<h4>Delete Product by product id.</h4>"
 			},
-			"response": [
-				{
-					"name": "Update Product",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
-						},
-						"url": {
-							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"gfg",
-								"v1",
-								"products",
-								"2c9820816d554d14016d554d4a390000"
-							]
-						}
-					},
-					"status": "Accepted",
-					"code": 202,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 21 Sep 2019 19:30:31 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"productId\": \"2c9820816d554d14016d554d4a390000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone11\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T19:29:51.668+0000\",\n    \"modified\": \"2019-09-21T19:30:31.772+0000\"\n}"
-				}
-			]
+			"response": []
 		},
 		{
 			"name": "Update Product Bulk",
@@ -376,7 +206,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " [\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3b0006\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"orange\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n            \r\n            \r\n        },\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3c0009\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"blue\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n            \r\n        }]"
+					"raw": " [\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3b0006\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"orange\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n        },\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3c0009\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"blue\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n        }]"
 				},
 				"url": {
 					"raw": "http://localhost:8085/gfg/v1/products/bulk",
@@ -392,94 +222,9 @@
 						"bulk"
 					]
 				},
-				"description": "Update Product API.\n\ncolor of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW \nFor any other value of color API will fail with 400 Bad Request"
+				"description": "<h4>Bulk Products Update API.</h4>\n<p> This API has limit of 1000 product per call.</p>\n\n<p>color of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW \nFor any other value of color API will fail with 400 Bad Request.</p>"
 			},
-			"response": [
-				{
-					"name": "Update Product",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
-						},
-						"url": {
-							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"gfg",
-								"v1",
-								"products",
-								"2c9820816d554d14016d554d4a390000"
-							]
-						}
-					},
-					"status": "Accepted",
-					"code": 202,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 21 Sep 2019 19:30:31 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"productId\": \"2c9820816d554d14016d554d4a390000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone11\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T19:29:51.668+0000\",\n    \"modified\": \"2019-09-21T19:30:31.772+0000\"\n}"
-				}
-			]
+			"response": []
 		},
 		{
 			"name": "Get Product",
@@ -517,112 +262,10 @@
 						"products",
 						"2c9820816d575efd016d575f310f000"
 					]
-				}
+				},
+				"description": "<h4> Get Product by product id.</h4>"
 			},
-			"response": [
-				{
-					"name": "Get Product",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-epmp-customer-id",
-								"value": "sDkCgvQIS_-lTDQYJk85lg",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-epmp-domain-id",
-								"value": "sAVWqtjMQO2gAILOmPXpig",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw",
-								"type": "text"
-							},
-							{
-								"key": "x-epmp-session-id",
-								"value": "Gaurav",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d54e637016d54e681440000",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"gfg",
-								"v1",
-								"products",
-								"2c9820816d54e637016d54e681440000"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 21 Sep 2019 17:37:47 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"productId\": \"2c9820816d54e637016d54e681440000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone1\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T17:37:35.551+0000\",\n    \"modified\": \"2019-09-21T17:37:35.551+0000\"\n}"
-				}
-			]
+			"response": []
 		},
 		{
 			"name": "Search Product By Title",
@@ -665,7 +308,8 @@
 							"value": "( title= phone1 )"
 						}
 					]
-				}
+				},
+				"description": "<h4> Search product by product title </h4>"
 			},
 			"response": []
 		},
@@ -710,7 +354,8 @@
 							"value": "( description= New Phone1 )"
 						}
 					]
-				}
+				},
+				"description": "<h4> Search product by product description </h4>"
 			},
 			"response": []
 		},
@@ -764,7 +409,7 @@
 						}
 					]
 				},
-				"description": "Sample API Signature for sorting based on price of item"
+				"description": "<h4> Get Products sorted by product price. </h4>"
 			},
 			"response": []
 		},
@@ -826,7 +471,7 @@
 						}
 					]
 				},
-				"description": "Search Product Based on Attribute Values, sort based on attributes and use limit and offset to achieve pagination"
+				"description": "<h4>Search Product Based on Attribute Values, sort based on attributes and use limit and offset to achieve pagination</h4>"
 			},
 			"response": []
 		}
