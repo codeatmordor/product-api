@@ -1,6 +1,6 @@
 package org.gk.gfg.product.service;
 
-import java.sql.SQLException;
+import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,46 +17,41 @@ import org.gk.gfg.product.repository.ProductRepository;
 import org.gk.gfg.product.search.SpecificationSearchCriteriaCreator;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Matchers;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.testng.Assert;
 
-@RunWith(SpringRunner.class)
+
+
 public class ProductServiceTest {
 
   private static final String INVALID_PRODUCT_ID = "INVALID-PRODUCT_ID";
   private static final String VALID_PRODUCT_ID = "PRODUCT-UUID-99-##";
 
-  @TestConfiguration
-  static class ProductServiceTestConfiguration {
-    @Bean
-    public ProductService productService() {
-      return new ProductService();
-    }
-  }
+  @Mock
+  ProductRepository productRepo;
 
-  @MockBean
-  private ProductRepository productRepo;
-  @Autowired
-  private ProductService productService;
+  @InjectMocks
+  ProductService productService;
 
   @Autowired
   private SpecificationSearchCriteriaCreator specificationSearchCriteriaCreator;
-  @MockBean
+
+  @Mock
   private SpecificationSearchCriteriaCreator specSearchCreator;
 
+
+
   @Before
-  public void setUp() throws SQLException {
+  public void setUp() {
+    MockitoAnnotations.initMocks(this);
     Mockito.when(productRepo.findById(Matchers.anyString())).thenReturn(getProductEntity2());
     Mockito.when(productRepo.saveAll(Matchers.anyObject())).thenReturn(getProductEntity());
   }
@@ -68,7 +63,7 @@ public class ProductServiceTest {
     List<Product> products = new ArrayList<>();
     products.add(getProduct().get());
     List<Product> savedProduct = productService.create(products);
-    Assert.assertEquals(savedProduct.get(0).getProductId(), products.get(0).getProductId());
+    assertEquals(savedProduct.get(0).getProductId(), products.get(0).getProductId());
   }
 
   @Test(expected = ProductServiceException.class)
@@ -80,7 +75,7 @@ public class ProductServiceTest {
   @Test
   public void getProductSucceeds() {
     Product p = productService.get(VALID_PRODUCT_ID);
-    Assert.assertEquals(p.getProductId(), VALID_PRODUCT_ID);
+    assertEquals(p.getProductId(), VALID_PRODUCT_ID);
   }
 
   @Test(expected = ProductServiceException.class)
@@ -102,7 +97,7 @@ public class ProductServiceTest {
     Product p = getProduct().get();
     String productId = VALID_PRODUCT_ID;
     Product updatedProduct = productService.update(p, productId);
-    Assert.assertEquals(p.getProductId(), updatedProduct.getProductId());
+    assertEquals(p.getProductId(), updatedProduct.getProductId());
   }
 
   @Test(expected = ProductServiceException.class)
@@ -137,7 +132,7 @@ public class ProductServiceTest {
         .when(productRepo.findAll(Matchers.any(Specification.class), Matchers.any(Pageable.class)))
         .thenReturn(getPage());
     ResponseWrapper<Product> res = productService.findProduct(sd, pageReq);
-    Assert.assertEquals(res.getResult().get(0).getTitle(), "Samsung M30");
+    assertEquals(res.getResult().get(0).getTitle(), "Samsung M30");
   }
 
 

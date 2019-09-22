@@ -2,6 +2,7 @@ package org.gk.gfg.product.service;
 
 import java.util.ArrayList;
 import org.gk.gfg.product.entity.UserEntity;
+import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.User;
 import org.gk.gfg.product.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class UserService implements UserDetailsService {
   }
 
   public UserEntity save(User user) {
+    UserEntity existing = userRepo.findByUsername(user.getUsername());
+    if (existing != null && existing.getUsername() != null
+        && existing.getUsername().equals(user.getUsername())) {
+      throw new ProductServiceException("This user is already registered.");
+    }
     UserEntity newUser = new UserEntity();
     newUser.setUsername(user.getUsername());
     newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

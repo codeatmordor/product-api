@@ -1,15 +1,14 @@
-
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gk.gfg.product.controller;
 
 import org.gk.gfg.product.authentication.JwtUtil;
+import org.gk.gfg.product.entity.UserEntity;
 import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.JwtRequest;
 import org.gk.gfg.product.model.JwtResponse;
 import org.gk.gfg.product.model.User;
 import org.gk.gfg.product.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -50,8 +49,9 @@ public class AuthenticationController {
   }
 
   @RequestMapping(value = "/gfg/v1/register", method = RequestMethod.POST)
-  public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
-    return ResponseEntity.ok(userDetailsService.save(user));
+  public ResponseEntity<UserEntity> saveUser(@RequestBody User user)
+      throws ProductServiceException {
+    return new ResponseEntity<>(userDetailsService.save(user), HttpStatus.OK);
   }
 
   private void authenticate(String username, String password) throws ProductServiceException {

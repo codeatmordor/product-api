@@ -124,16 +124,16 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDUyNTEsImlhdCI6MTU2OTEyNzI1MX0.hr_z5uISsW8jbU6bvaDqgLMUpgFeJ9E2ngw7hxkIuG0l4pJkOL9-RsU4Ui6H3yjUU4QBbyU6e07spvOsvaF8oQ",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxODQyMzYsImlhdCI6MTU2OTE2NjIzNn0.533Ryd6a_Zg7WnKxyse2DckJ-OV97K12o06zaE27lf4TwOgXDN97Nu0j3XUFLBQrZ-a1qUIVMipHiECb6qZmhA",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"productId\": \"2c9820816d575efd016d575f31110002\",\r\n        \"title\": \"phone3\",\r\n        \"description\": \"New Phone3\",\r\n        \"color\": \"RED\",\r\n        \"price\": 400,\r\n        \"brand\": \"samsung\"\r\n }"
+					"raw": " {\r\n        \"productId\": \"2c9e73126d599874016d5998e74c0001\",\r\n        \"title\": \"phone2\",\r\n        \"description\": \"New Phone2\",\r\n        \"color\": \"RED\",\r\n        \"price\": 300,\r\n        \"brand\": \"samsung\"\r\n    }"
 				},
 				"url": {
-					"raw": "http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f31110002",
+					"raw": "http://localhost:8086/gfg/v1/products/2c9e73126d599874016d5998e74c0001",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -143,7 +143,7 @@
 						"gfg",
 						"v1",
 						"products",
-						"2c9820816d575efd016d575f31110002"
+						"2c9e73126d599874016d5998e74c0001"
 					]
 				},
 				"description": "<h4>Update Product by product id.</h4>\n\n<p>color of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request</p>"
@@ -206,15 +206,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " [\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3b0006\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"orange\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n        },\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3c0009\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"blue\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n        }]"
+					"raw": " [\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3b0006\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"ORANGE\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n        },\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3c0009\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"BLUE\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n        }]"
 				},
 				"url": {
-					"raw": "http://localhost:8085/gfg/v1/products/bulk",
+					"raw": "http://localhost:8086/gfg/v1/products/bulk",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
 						"gfg",
 						"v1",
@@ -291,12 +291,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8085/gfg/v1/products?where=( title= phone1 )",
+					"raw": "http://localhost:8086/gfg/v1/products?where=( title= phone1 )",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
 						"gfg",
 						"v1",
@@ -337,12 +337,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8085/gfg/v1/products?where=( description= New Phone1 )",
+					"raw": "http://localhost:8086/gfg/v1/products?where=( description= New Phone1 )",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
 						"gfg",
 						"v1",
@@ -383,12 +383,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8085/gfg/v1/products?sortby=price&include_count=true&where=( brand= samsung)",
+					"raw": "http://localhost:8086/gfg/v1/products?sortby=price&include_count=true&where=( brand= samsung)",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
 						"gfg",
 						"v1",
