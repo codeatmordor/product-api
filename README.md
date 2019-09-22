@@ -39,7 +39,7 @@
  
  
  ## APIs
- 1. Register User with Product Service
+### 1. Register User with Product Service
    ```bash
    curl --location --request POST "http://localhost:8086/gfg/v1/register" \
   --header "Content-Type: application/json" \
@@ -48,7 +48,7 @@
 	  \"password\":\"pass@123\"
   }
    ```
- 2. Get Authentication Token
+### 2. Get Authentication Token
    ```bash
  curl --location --request POST "http://localhost:8086/gfg/v1/authenticate" \
   --header "Content-Type: application/json" \
@@ -58,7 +58,7 @@
  }
  ```
  
- 3. Create Products
+### 3. Create Products
  ```bash
  curl --location --request POST "http://localhost:8086/gfg/v1/products" \
   --header "Content-Type: application/json" \
@@ -78,7 +78,7 @@
 }]
  ```
  
- 4. Get Product
+### 4. Get Product
   ```bash
  curl --location --request GET "http://localhost:8085/gfg/v1/products/2c9820816d54e637016d54e681440000" \
   --header "Content-Type: application/json" \
@@ -88,7 +88,7 @@
   ``` 
     
     
- 5. Update Product
+### 5. Update Product
  ```bash
  curl --location --request PUT "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000" \
   --header "Content-Type: application/json" \
@@ -104,7 +104,7 @@
   ``` 
     
     
- 6. Update Products
+### 6. Update Products
   ```bash
  curl --location --request PUT "http://localhost:8085/gfg/v1/products/bulk" \
   --header "Content-Type: application/json" \
@@ -127,7 +127,7 @@
   ``` 
     
     
- 7. Delete Product
+### 7. Delete Product
   ```bash
  curl -X DELETE \
   http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f31110002 \
@@ -136,7 +136,7 @@
   ``` 
     
     
- 8. Search Product By Title
+### 8. Search Product By Title
    ```bash
 curl -X GET \
   http://localhost:8085/gfg/v1/products?where=%28%20title=%20phone1%20%29 \
@@ -145,7 +145,7 @@ curl -X GET \
   ``` 
     
     
- 9. Search Product By Description
+### 9. Search Product By Description
    ```bash
  curl -X GET \
    http://localhost:8085/gfg/v1/products?where=%28%20description=%20New%20Phone1%20%29 \
@@ -154,7 +154,7 @@ curl -X GET \
   ``` 
     
     
- 10. Sort product by price
+### 10. Sort product by price
    ```bash
  curl -X GET \
    http://localhost:8085/gfg/v1/products?sortby=price&include_count=true&where=%28%20brand=%20samsung%29 \
@@ -163,7 +163,7 @@ curl -X GET \
   ``` 
     
     
- 11. Pagination Request
+### 11. Pagination Request
    ```bash
  curl -X GET \
    http://localhost:8086/gfg/v1/products?limit=10&offset=0&sortby=price&include_count=true&where=%28%20brand=%20samsung%29 \
