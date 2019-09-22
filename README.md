@@ -1,5 +1,15 @@
 # Simple Product API
 
+## Main Design Decisions
+1. Batch APIs are implemented for Creation of Product and Updation of product, there is a configurable limit of number of products these APIs accept in request body. Default limit is of 1000 and it can be changed by bulk.request.limit property in application.properties file.
+2. JPA Specification is used to dynamically create criterias for searching.
+3. Pageable inteface is used for providing pagination.
+4. Product color value is limit to [BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW] Only.
+5. JWT based authentication is used for token-based API security.
+6. Token expires after 5 hours.
+7. Windows based nanoserver image is used for docker base-image.
+8. Port 8086 is exposed for docker container
+
 
 ## Build and Run Instructions
 
@@ -25,7 +35,7 @@
  8. Use APIs under GFG Product 
  
  
- ### APIs
+ ## APIs
  1. Register User with Product Service
  2. Get Authentication Token
  3. Create Products
