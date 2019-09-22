@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "6ff9119e-0c06-46f4-a2a9-0fb1fcc5cb83",
 		"name": "GFG Product",
+		"description": "Collection of APIs for Product",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,41 +12,9 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "x-epmp-domain-id",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"type": "text",
-						"disabled": true
-					},
-					{
 						"key": "Content-Type",
-						"name": "Content-Type",
 						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "x-epmp-session-id",
-						"value": "Gaurav",
-						"type": "text",
-						"disabled": true
+						"type": "text"
 					}
 				],
 				"body": {
@@ -58,16 +27,19 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8085/register",
+					"raw": "http://localhost:8086/gfg/v1/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
+						"gfg",
+						"v1",
 						"register"
 					]
-				}
+				},
+				"description": "Register User with Product Service. This API accepts username and password in request body."
 			},
 			"response": []
 		},
@@ -77,35 +49,9 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"type": "text"
-					},
-					{
-						"key": "x-epmp-domain-id",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"type": "text"
-					},
-					{
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text"
-					},
-					{
-						"key": "x-epmp-session-id",
-						"value": "Gaurav",
-						"type": "text",
-						"disabled": true
 					}
 				],
 				"body": {
@@ -113,16 +59,19 @@
 					"raw": "{\n\t\"username\":\"gaurav\",\n\t\"password\":\"pass@123\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8085/authenticate",
+					"raw": "http://localhost:8086/gfg/v1/authenticate",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
+						"gfg",
+						"v1",
 						"authenticate"
 					]
-				}
+				},
+				"description": "This API generate authentication token for registered user."
 			},
 			"response": []
 		},
@@ -132,24 +81,290 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"type": "text",
-						"disabled": true
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					},
 					{
-						"key": "x-epmp-domain-id",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"type": "text",
-						"disabled": true
-					},
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDQ4NDQsImlhdCI6MTU2OTEyNjg0NH0.icpNugho6CrExgPvYN0eA4uyWXbLXwqbWAsWXMwpluqPcoo_kpJQEleEwySpa0cl7-cOtXxfoqZ3xC6r5BJMPw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n\t\"title\":\"phone1\",\n\t\"description\":\"New Phone1\",\n\t\"color\":\"RED\",\n  \"price\":200,\n  \"brand\":\"samsung\"\n},{\n\t\"title\":\"phone2\",\n\t\"description\":\"New Phone2\",\n\t\"color\":\"BLUE\",\n  \"price\":300,\n  \"brand\":\"samsung\"\n},{\n\t\"title\":\"phone1\",\n\t\"description\":\"New Phone1\",\n\t\"color\":\"RED\",\n  \"price\":200,\n  \"brand\":\"samsung\"\n},{\n\t\"title\":\"phone2\",\n\t\"description\":\"New Phone2\",\n\t\"color\":\"BLUE\",\n  \"price\":300,\n  \"brand\":\"samsung\"\n},{\n\t\"title\":\"phone3\",\n\t\"description\":\"New Phone3\",\n\t\"color\":\"GREEN\",\n  \"price\":400,\n  \"brand\":\"samsung\"\n}]"
+				},
+				"url": {
+					"raw": "http://localhost:8086/gfg/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"gfg",
+						"v1",
+						"products"
+					]
+				},
+				"description": "Create Product API. This API accepts List of products, this API has a limit of 1000 products.\n\nSample Request Body :\n[\n{\n\t\"title\":\"phone2\",\n\t\"description\":\"New Phone2\",\n\t\"color\":\"BLUE\",\n    \"price\":300,\n    \"brand\":\"samsung\"\n}\n]\n\ncolor of product can be any of following values:\nBLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					},
 					{
-						"key": "Accept",
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDUyNTEsImlhdCI6MTU2OTEyNzI1MX0.hr_z5uISsW8jbU6bvaDqgLMUpgFeJ9E2ngw7hxkIuG0l4pJkOL9-RsU4Ui6H3yjUU4QBbyU6e07spvOsvaF8oQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"productId\": \"2c9820816d575efd016d575f31110002\",\r\n        \"title\": \"phone3\",\r\n        \"description\": \"New Phone3\",\r\n        \"color\": \"CUP\",\r\n        \"price\": 400,\r\n        \"brand\": \"samsung\"\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f31110002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"gfg",
+						"v1",
+						"products",
+						"2c9820816d575efd016d575f31110002"
+					]
+				},
+				"description": "Update Product API.\n\ncolor of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW\nFor any other value of color API will fail with 400 Bad Request"
+			},
+			"response": [
+				{
+					"name": "Update Product",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"gfg",
+								"v1",
+								"products",
+								"2c9820816d554d14016d554d4a390000"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 21 Sep 2019 19:30:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"productId\": \"2c9820816d554d14016d554d4a390000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone11\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T19:29:51.668+0000\",\n    \"modified\": \"2019-09-21T19:30:31.772+0000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDUyNTEsImlhdCI6MTU2OTEyNzI1MX0.hr_z5uISsW8jbU6bvaDqgLMUpgFeJ9E2ngw7hxkIuG0l4pJkOL9-RsU4Ui6H3yjUU4QBbyU6e07spvOsvaF8oQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f31110002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"gfg",
+						"v1",
+						"products",
+						"2c9820816d575efd016d575f31110002"
+					]
+				},
+				"description": "Update Product API."
+			},
+			"response": [
+				{
+					"name": "Update Product",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"gfg",
+								"v1",
+								"products",
+								"2c9820816d554d14016d554d4a390000"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 21 Sep 2019 19:30:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"productId\": \"2c9820816d554d14016d554d4a390000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone11\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T19:29:51.668+0000\",\n    \"modified\": \"2019-09-21T19:30:31.772+0000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Product Bulk",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					},
@@ -157,20 +372,14 @@
 						"key": "Authorization",
 						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA",
 						"type": "text"
-					},
-					{
-						"key": "x-epmp-session-id",
-						"value": "Gaurav",
-						"type": "text",
-						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\n\t\"title\":\"phone1\",\n\t\"description\":\"New Phone1\",\n\t\"color\":\"red\",\n  \"price\":200,\n  \"brand\":\"samsung\"\n},{\n\t\"title\":\"phone2\",\n\t\"description\":\"New Phone2\",\n\t\"color\":\"red\",\n  \"price\":300,\n  \"brand\":\"samsung\"\n},{\n\t\"title\":\"phone3\",\n\t\"description\":\"New Phone3\",\n\t\"color\":\"red\",\n  \"price\":400,\n  \"brand\":\"samsung\"\n}]"
+					"raw": " [\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3b0006\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"orange\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n            \r\n            \r\n        },\r\n        {\r\n            \"productId\": \"2c9820816d554d14016d554d4a3c0009\",\r\n            \"title\": \"phone1\",\r\n            \"description\": \"New Phone1\",\r\n            \"color\": \"blue\",\r\n            \"price\": 200,\r\n            \"brand\": \"samsung\"\r\n            \r\n        }]"
 				},
 				"url": {
-					"raw": "http://localhost:8085/gfg/v1/products",
+					"raw": "http://localhost:8085/gfg/v1/products/bulk",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -179,11 +388,98 @@
 					"path": [
 						"gfg",
 						"v1",
-						"products"
+						"products",
+						"bulk"
 					]
-				}
+				},
+				"description": "Update Product API.\n\ncolor of product can be any of following values: BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW \nFor any other value of color API will fail with 400 Bad Request"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Update Product",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"productId\": \"2c9820816d554d14016d554d4a390000\",\r\n        \"title\": \"phone1\",\r\n        \"description\": \"New Phone11\",\r\n        \"color\": \"red\",\r\n        \"price\": 200,\r\n        \"brand\": \"samsung\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"gfg",
+								"v1",
+								"products",
+								"2c9820816d554d14016d554d4a390000"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 21 Sep 2019 19:30:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"productId\": \"2c9820816d554d14016d554d4a390000\",\n    \"title\": \"phone1\",\n    \"description\": \"New Phone11\",\n    \"color\": \"red\",\n    \"price\": 200,\n    \"brand\": \"samsung\",\n    \"created\": \"2019-09-21T19:29:51.668+0000\",\n    \"modified\": \"2019-09-21T19:30:31.772+0000\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Get Product",
@@ -194,37 +490,14 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "x-epmp-domain-id",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"type": "text",
-						"disabled": true
-					},
-					{
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					},
 					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDUyNTEsImlhdCI6MTU2OTEyNzI1MX0.hr_z5uISsW8jbU6bvaDqgLMUpgFeJ9E2ngw7hxkIuG0l4pJkOL9-RsU4Ui6H3yjUU4QBbyU6e07spvOsvaF8oQ",
 						"type": "text"
-					},
-					{
-						"key": "x-epmp-session-id",
-						"value": "Gaurav",
-						"type": "text",
-						"disabled": true
 					}
 				],
 				"body": {
@@ -232,17 +505,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8085/gfg/v1/products/2c9820816d54df00016d54e0cecc0003",
+					"raw": "http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f310f000",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8086",
 					"path": [
 						"gfg",
 						"v1",
 						"products",
-						"2c9820816d54df00016d54e0cecc0003"
+						"2c9820816d575efd016d575f310f000"
 					]
 				}
 			},
@@ -360,37 +633,14 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"type": "text",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"disabled": true
-					},
-					{
-						"key": "x-epmp-domain-id",
-						"type": "text",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"disabled": true
-					},
-					{
 						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					},
 					{
 						"key": "Authorization",
-						"type": "text",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw"
-					},
-					{
-						"key": "x-epmp-session-id",
-						"type": "text",
-						"value": "Gaurav",
-						"disabled": true
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -428,37 +678,14 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"type": "text",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"disabled": true
-					},
-					{
-						"key": "x-epmp-domain-id",
-						"type": "text",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"disabled": true
-					},
-					{
 						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					},
 					{
 						"key": "Authorization",
-						"type": "text",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw"
-					},
-					{
-						"key": "x-epmp-session-id",
-						"type": "text",
-						"value": "Gaurav",
-						"disabled": true
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -496,37 +723,14 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "x-epmp-customer-id",
-						"type": "text",
-						"value": "sDkCgvQIS_-lTDQYJk85lg",
-						"disabled": true
-					},
-					{
-						"key": "x-epmp-domain-id",
-						"type": "text",
-						"value": "sAVWqtjMQO2gAILOmPXpig",
-						"disabled": true
-					},
-					{
 						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					},
 					{
 						"key": "Authorization",
-						"type": "text",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw"
-					},
-					{
-						"key": "x-epmp-session-id",
-						"type": "text",
-						"value": "Gaurav",
-						"disabled": true
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -559,7 +763,70 @@
 							"value": "( brand= samsung)"
 						}
 					]
-				}
+				},
+				"description": "Sample API Signature for sorting based on price of item"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Product SortBy Price Paginated",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDQ4NDQsImlhdCI6MTU2OTEyNjg0NH0.icpNugho6CrExgPvYN0eA4uyWXbLXwqbWAsWXMwpluqPcoo_kpJQEleEwySpa0cl7-cOtXxfoqZ3xC6r5BJMPw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8086/gfg/v1/products?limit=10&offset=0&sortby=price&include_count=true&where=( brand= samsung)",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"gfg",
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "sortby",
+							"value": "price"
+						},
+						{
+							"key": "include_count",
+							"value": "true"
+						},
+						{
+							"key": "where",
+							"value": "( brand= samsung)"
+						}
+					]
+				},
+				"description": "Search Product Based on Attribute Values, sort based on attributes and use limit and offset to achieve pagination"
 			},
 			"response": []
 		}
