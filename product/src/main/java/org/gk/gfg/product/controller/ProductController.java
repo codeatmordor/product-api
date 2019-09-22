@@ -3,7 +3,7 @@ package org.gk.gfg.product.controller;
 import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
-import org.gk.gfg.product.exception.ProductServiceException;
+import org.gk.gfg.product.exception.ProductGatewayException;
 import org.gk.gfg.product.model.PaginationRequest;
 import org.gk.gfg.product.model.Product;
 import org.gk.gfg.product.model.ResponseWrapper;
@@ -45,11 +45,11 @@ public class ProductController {
   public ResponseEntity<List<Product>> create(@Valid @RequestBody final List<Product> products) {
     if (products == null || products.isEmpty()) {
       logger.error("Requestbody is empty");
-      throw new ProductServiceException("invalid.argument");
+      throw new ProductGatewayException("Invalid Request - Request Body is Empty.");
     }
     if (products.size() > limit) {
-      logger.error("Request size exceeds limit " + limit);;
-      throw new ProductServiceException("api.limit.exceeded");
+      logger.error("Request size exceeds limit " + limit);
+      throw new ProductGatewayException("Request Size exceeds API limit of " + limit);
     }
     return new ResponseEntity<>(productService.create(products), HttpStatus.CREATED);
   }
@@ -73,10 +73,14 @@ public class ProductController {
 
   @PutMapping(path = "/products/bulk", produces = APPLICATION_JSON)
   public ResponseEntity<Set<Product>> update(@Valid @RequestBody final Set<Product> products) {
-    if (products == null || products.isEmpty())
-      throw new ProductServiceException("invalid.argument");
-    if (products.size() > limit)
-      throw new ProductServiceException("api.limit.exceeded");
+    if (products == null || products.isEmpty()) {
+      logger.error("Requestbody is empty");
+      throw new ProductGatewayException("Invalid Request - Request Body is Empty.");
+    }
+    if (products.size() > limit) {
+      logger.error("Request size exceeds limit " + limit);
+      throw new ProductGatewayException("Request Size exceeds API limit of " + limit);
+    }
     return new ResponseEntity<>(productService.update(products), HttpStatus.ACCEPTED);
   }
 
@@ -98,7 +102,5 @@ public class ProductController {
       return new ResponseEntity<>(result, HttpStatus.OK);
     }
   }
-
-
 }
 

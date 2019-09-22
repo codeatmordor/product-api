@@ -11,6 +11,7 @@ import org.gk.gfg.product.entity.ProductEntity;
 import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.PaginationRequest;
 import org.gk.gfg.product.model.Product;
+import org.gk.gfg.product.model.ProductColor;
 import org.gk.gfg.product.model.ResponseWrapper;
 import org.gk.gfg.product.model.SearchProductDto;
 import org.gk.gfg.product.repository.ProductRepository;
@@ -26,7 +27,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
-
   private static Logger logger = LoggerFactory.getLogger(ProductService.class);
 
   @Autowired
@@ -41,6 +41,10 @@ public class ProductService {
       for (Product product : products) {
         product.setCreated(new Date());
         product.setModified(new Date());
+        if (!ProductColor.has(product.getColor().name())) {
+          throw new ProductServiceException(
+              "Invalid Product Color for product title " + product.getTitle());
+        }
         productEntities.add(new ProductEntity(product));
       }
       final List<ProductEntity> createdEntities = productRepo.saveAll(productEntities);
@@ -55,48 +59,62 @@ public class ProductService {
 
   public Product get(final String productId) throws ProductServiceException {
     if (StringUtils.isBlank(productId))
-      throw new ProductServiceException("invalid.input");
+      throw new ProductServiceException("Product Id is Invalid/Blank");
     final Optional<ProductEntity> entities = productRepo.findById(productId);
-    return new Product(entities.get());
+    if (entities.isPresent()) {
+      return new Product(entities.get());
+    } else {
+      logger.error("No products found for given id " + productId);
+      throw new ProductServiceException("No products found for given id " + productId);
+    }
   }
 
   public Product update(final Product product, final String productId)
       throws ProductServiceException {
     if (StringUtils.isBlank(productId))
-      throw new ProductServiceException("invalid.input");
-    final Optional<ProductEntity> entities = productRepo.findById(productId);
-    if (entities.isPresent()) {
-      ProductEntity retrievedEntity = entities.get();
-      updateProperties(retrievedEntity, product);
-      final ProductEntity updatedEntity = productRepo.save(retrievedEntity);
-      return new Product(updatedEntity);
-    } else {
-      logger.error("No products found for given id " + productId);
-      throw new ProductServiceException("product.not.found");
+      throw new ProductServiceException("Product Id is Invalid/Blank");
+    try {
+      final Optional<ProductEntity> entities = productRepo.findById(productId);
+      if (entities.isPresent()) {
+        ProductEntity retrievedEntity = entities.get();
+        updateProperties(retrievedEntity, product);
+        final ProductEntity updatedEntity = productRepo.save(retrievedEntity);
+        return new Product(updatedEntity);
+      } else {
+        logger.error("No products found for given id " + productId);
+        throw new ProductServiceException("No products found for given id " + productId);
+      }
+    } catch (Exception e) {
+      logger.error("Update Failed Exception " + e);
+      throw new ProductServiceException("Product Update failed with exception " + e.getMessage());
     }
   }
 
   public Set<Product> update(final Set<Product> products) throws ProductServiceException {
     if (products == null || products.isEmpty())
-      throw new ProductServiceException("invalid.input");
+      throw new ProductServiceException("Update Product Request is Blank/Invalid");
     final Set<String> productIds = new HashSet<>();
     products.stream().forEach(v -> productIds.add(v.getProductId()));
+    try {
+      final List<ProductEntity> productEntities = productRepo.findAllById(productIds);
+      if (productEntities.size() == 0) {
+        throw new ProductServiceException("No products found for Ids " + productIds.toString());
+      }
+      for (final ProductEntity entity : productEntities) {
+        final Product product =
+            products.stream().filter(v -> (v.getProductId().compareTo(entity.getProduct_id()) == 0))
+                .findFirst().get();
+        updateProperties(entity, product);
+      }
 
-
-    final List<ProductEntity> productEntities = productRepo.findAllById(productIds);
-    if (productEntities.size() == 0) {
-      throw new ProductServiceException("entity.not.found");
+      final List<ProductEntity> updatedEntity = productRepo.saveAll(productEntities);
+      final Set<Product> res = new HashSet<>();
+      updatedEntity.stream().forEach(v -> res.add(new Product(v)));
+      return res;
+    } catch (Exception e) {
+      logger.error("Update Failed Exception " + e);
+      throw new ProductServiceException("Product Update failed with exception " + e.getMessage());
     }
-    for (final ProductEntity entity : productEntities) {
-      final Product product = products.stream()
-          .filter(v -> (v.getProductId().compareTo(entity.getProduct_id()) == 0)).findFirst().get();
-      updateProperties(entity, product);
-    }
-
-    final List<ProductEntity> updatedEntity = productRepo.saveAll(productEntities);
-    final Set<Product> res = new HashSet<>();
-    updatedEntity.stream().forEach(v -> res.add(new Product(v)));
-    return res;
   }
 
   public ResponseWrapper<Product> findProduct(final SearchProductDto searchDto,
@@ -108,7 +126,7 @@ public class ProductService {
 
   public void delete(final String productId) throws ProductServiceException {
     if (StringUtils.isBlank(productId))
-      throw new ProductServiceException("invalid.input");
+      throw new ProductServiceException("Product Id is Invalid/Blank");
     productRepo.deleteById(productId);
   }
 
@@ -129,7 +147,7 @@ public class ProductService {
       return res;
     } catch (Exception e) {
       logger.error("Exception occured while searching product.", e);
-      throw new ProductServiceException("Seaching of Product failed, error " + e.getMessage());
+      throw new ProductServiceException("Searching of Product failed, error " + e.getMessage());
     }
   }
 
@@ -143,7 +161,8 @@ public class ProductService {
       entity.setDescription(product.getDescription());
     if (product.getPrice() != null)
       entity.setPrice(product.getPrice());
-    if (StringUtils.isNotBlank(product.getColor().name()))
+    if (StringUtils.isNotBlank(product.getColor().name())
+        && ProductColor.has(product.getColor().name()))
       entity.setColor(product.getColor());
     entity.setModified(new Date());
   }

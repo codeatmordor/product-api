@@ -33,5 +33,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     return new ResponseEntity(error, HttpStatus.NOT_FOUND);
   }
 
+  @ExceptionHandler(ProductGatewayException.class)
+  public final ResponseEntity<ExceptionResponse> handleMethodArgumentNotValidException(
+      ProductServiceException ex, WebRequest request) {
+    List<String> details = new ArrayList<>();
+    details.add(ex.getLocalizedMessage());
+    ExceptionResponse error = new ExceptionResponse(new Date(), "BAD REQUEST", details);
+    return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
+  }
+
+
+
 }
 
