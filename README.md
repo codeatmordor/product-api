@@ -1,7 +1,7 @@
 # Simple Product API
 
 ## Main Design Decisions
-1. Batch APIs are implemented for Creation of Product and Updation of product, there is a configurable limit of number of products these APIs accept in request body. Default limit is of 1000 and it can be changed by bulk.request.limit property in application.properties file.
+1. Batch APIs are implemented for Creation of Product and Updation of product, there is a configurable limit of number of products these APIs accept in request body. Default limit is of 1000 and it can be changed by **bulk.request.limit** property in **application.properties** file.
 2. JPA Specification is used to dynamically create criterias for searching.
 3. Pageable inteface is used for providing pagination.
 4. Product color value is limit to [BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW] Only.
@@ -16,6 +16,8 @@
 10. Schema for product database
 
 ![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/product-table.png)
+
+11. Java **Matcher** is used to parse search API where-clause. This matcher returns Key, Operator and Value. And this triplet is used to create specification criteria.
 
 
 

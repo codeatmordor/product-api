@@ -4,6 +4,7 @@
 package org.gk.gfg.product.controller;
 
 import org.gk.gfg.product.authentication.JwtUtil;
+import org.gk.gfg.product.exception.ProductServiceException;
 import org.gk.gfg.product.model.JwtRequest;
 import org.gk.gfg.product.model.JwtResponse;
 import org.gk.gfg.product.model.User;
@@ -53,14 +54,14 @@ public class AuthenticationController {
     return ResponseEntity.ok(userDetailsService.save(user));
   }
 
-  private void authenticate(String username, String password) throws Exception {
+  private void authenticate(String username, String password) throws ProductServiceException {
     try {
       authenticationManager
           .authenticate(new UsernamePasswordAuthenticationToken(username, password));
     } catch (DisabledException e) {
-      throw new Exception("USER_DISABLED", e);
+      throw new ProductServiceException("User is disabled. " + e.getMessage());
     } catch (BadCredentialsException e) {
-      throw new Exception("INVALID_CREDENTIALS", e);
+      throw new ProductServiceException("Credentials are invalid. " + e.getMessage());
     }
   }
 }
