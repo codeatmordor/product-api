@@ -55,7 +55,7 @@
   --data "{
 	\"username\":\"gaurav\",
 	\"password\":\"pass@123\"
-}
+ }
  ```
  
  3. Create Products
@@ -84,9 +84,11 @@
   --header "Content-Type: application/json" \
   --header "Accept: application/json" \
   --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw" \
-  --data ""
-    ```
-     
+  --data "{
+  }
+  ``` 
+    
+    
  5. Update Product
  ```bash
  curl --location --request PUT "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000" \
@@ -101,9 +103,33 @@
         \"price\": 200,
         \"brand\": \"samsung\"
     }
-     ```
-     
+  ``` 
+    
+    
  6. Update Products
+  ```bash
+ curl --location --request PUT "http://localhost:8085/gfg/v1/products/bulk" \
+  --header "Content-Type: application/json" \
+  --header "Accept: application/json" \
+  --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA" \
+  --data "  [{
+        \"productId\": \"2c9820816d554d14016d554d4a390000\",
+        \"title\": \"phone1\",
+        \"description\": \"New Phone11\",
+        \"color\": \"RED\",
+        \"price\": 200,
+        \"brand\": \"samsung\"
+    },{
+        \"productId\": \"2c9820816d554d14016d554d4a390001\",
+        \"title\": \"phone2\",
+        \"description\": \"New Phone12\",
+        \"color\": \"BLUE\",
+        \"price\": 200,
+        \"brand\": \"samsung\"
+    }]
+  ``` 
+    
+    
  7. Delete Product
  8. Search Product By Title
  9. Search Product By Description
