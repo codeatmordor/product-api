@@ -1,0 +1,6 @@
+title JWT based Authentication
+
+Client->Server:POST /gfg/v1/authenticate with username and password
+Server<--Server:Validate username and password and generate JWT using secret
+Server->Client: Return generated JWT token
+Client->Server: POST /gfg/v1/products to create products using token
