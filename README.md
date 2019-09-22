@@ -13,6 +13,11 @@
 7. Windows based *nanoserver* image is used for docker base-image.
 8. Port 8086 is exposed for docker container
 9. For persistance of User and Products in memory *H2 Database* is used.
+10. Schema for product database
+
+![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/product-table.png)
+
+
 
 
 ## Build and Run Instructions
