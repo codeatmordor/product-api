@@ -82,7 +82,6 @@
   ```bash
  curl --location --request GET "http://localhost:8085/gfg/v1/products/2c9820816d54e637016d54e681440000" \
   --header "Content-Type: application/json" \
-  --header "Accept: application/json" \
   --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw" \
   --data "{
   }
@@ -93,13 +92,12 @@
  ```bash
  curl --location --request PUT "http://localhost:8085/gfg/v1/products/2c9820816d554d14016d554d4a390000" \
   --header "Content-Type: application/json" \
-  --header "Accept: application/json" \
   --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA" \
   --data "  {
         \"productId\": \"2c9820816d554d14016d554d4a390000\",
         \"title\": \"phone1\",
         \"description\": \"New Phone11\",
-        \"color\": \"red\",
+        \"color\": \"RED\",
         \"price\": 200,
         \"brand\": \"samsung\"
     }
@@ -110,7 +108,6 @@
   ```bash
  curl --location --request PUT "http://localhost:8085/gfg/v1/products/bulk" \
   --header "Content-Type: application/json" \
-  --header "Accept: application/json" \
   --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ5NzMsImlhdCI6MTU2OTA4Njk3M30.Jatct6zMErLzoVMhalUaT4m9MYqmYfC9jixnDn6mk4ngh3iGOzeOkQmD4lKakshxgci3urYHwHxmIzQBvEhyVA" \
   --data "  [{
         \"productId\": \"2c9820816d554d14016d554d4a390000\",
@@ -131,10 +128,50 @@
     
     
  7. Delete Product
+  ```bash
+ curl -X DELETE \
+  http://localhost:8086/gfg/v1/products/2c9820816d575efd016d575f31110002 \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxNDUyNTEsImlhdCI6MTU2OTEyNzI1MX0.hr_z5uISsW8jbU6bvaDqgLMUpgFeJ9E2ngw7hxkIuG0l4pJkOL9-RsU4Ui6H3yjUU4QBbyU6e07spvOsvaF8oQ
+  ``` 
+    
+    
  8. Search Product By Title
+   ```bash
+curl -X GET \
+  http://localhost:8085/gfg/v1/products?where=%28%20title=%20phone1%20%29 \
+   --header "Content-Type: application/json" \
+   --header "Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXxw
+  ``` 
+    
+    
  9. Search Product By Description
+   ```bash
+ curl -X GET \
+   http://localhost:8085/gfg/v1/products?where=%28%20description=%20New%20Phone1%20%29 \
+   --header "Content-Type: application/json" \
+   --header "Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXx
+  ``` 
+    
+    
  10. Sort product by price
+   ```bash
+ curl -X GET \
+   http://localhost:8085/gfg/v1/products?sortby=price&include_count=true&where=%28%20brand=%20samsung%29 \
+   --header "Content-Type: application/json" \
+   --header "Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXx
+  ``` 
+    
+    
  11. Pagination Request
+   ```bash
+ curl -X GET \
+   http://localhost:8086/gfg/v1/products?limit=10&offset=0&sortby=price&include_count=true&where=%28%20brand=%20samsung%29 \
+   --header "Content-Type: application/json" \
+   --header "Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXYiLCJleHAiOjE1NjkxMDQ4NTYsImlhdCI6MTU2OTA4Njg1Nn0.ZG6OD8tEIsTJQ836ThVOUsTj0OvSV0o35n6PuNIxiAt4hdwTVYIYGTUWb2RUs9PafyK_jnwaPe-izyNgCrzXx
+  ``` 
+    
+    
  
  ## API Documentation:
  APIs are property documented using Postman and documentation can be accessed after importing collection to PostMan and Using 'View in Web' Option
