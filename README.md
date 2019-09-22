@@ -180,5 +180,5 @@ curl -X GET \
     
  
  ## API Documentation:
- APIs are property documented using Postman and documentation can be accessed after importing collection to PostMan and Using 'View in Web' Option
+More details about each API is documented under Postman Collection */product/postman collection/GFG Product.postman_collection.json*, once collection is imported in Postman, **View in Web** Option of **GFG Product** Collection should be used to read documentation. 
      
