@@ -35,7 +35,7 @@
  3. Open Powershell on windows
  4. cd /product
  5. Use below docker commands to build docker image of our product service. Use second command to deploy image and third command to get status of running container.
- - **Build Docker Image:** 
+ - **Docker Image:** 
      ```bash
      docker build -t productservice:v1.0 .
      docker run -d -p 8086:8086 productservice:v1.0
