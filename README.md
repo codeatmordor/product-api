@@ -3,15 +3,15 @@
 ## Main Design Decisions
 1. Batch APIs are implemented for Creation of Product and Updation of product, there is a configurable limit of number of products these APIs accept in request body. Default limit is of 1000 and it can be changed by **bulk.request.limit** property in **application.properties** file.
 2. JPA Specification is used to dynamically create criterias for searching.
-3. Pageable inteface is used for providing pagination.
-4. Product color value is limit to [BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW] Only.
+3. **Pageable** inteface is used for providing pagination.
+4. Product color value is limit to **[BLUE, GREEN, WHITE, BLACK, ORANGE, RED, YELLOW]** only.
 5. JWT based authentication is used for token-based API security.
 
 ![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/JWT-based-auth.png)
 
-6. Token expires after *5 hours*.
-7. Windows based *nanoserver* image is used for docker base-image.
-8. Port 8086 is exposed for docker container
+6. Token expires after **5 hours**.
+7. Windows based **nanoserver** image is used for docker base-image.
+8. Port **8086** is exposed for docker container
 9. For persistance of User and Products in memory *H2 Database* is used.
 10. Schema for product database
 
@@ -182,7 +182,7 @@ curl -X GET \
     
  
  ## API Documentation:
-More details about each API is documented under Postman Collection */product/postman collection/GFG Product.postman_collection.json*, once collection is imported in Postman, **View in Web** Option of **GFG Product** Collection should be used to read documentation. 
+More details about each API is documented under Postman Collection **/product/postman collection/GFG Product.postman_collection.json**, once collection is imported in Postman, **View in Web** Option of **GFG Product** Collection should be used to read documentation. 
 
 ![alt text](https://github.com/codeatmordor/product-api/blob/master/product/documentation/Postman-documentation.png)
 
