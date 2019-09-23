@@ -44,7 +44,7 @@
 
  6. Product service now running on http://localhost:8086/
  7. Import Postman Collection from */product/postman collection/GFG Product.postman_collection.json* to Postman
- 8. Use APIs under GFG Product 
+ 8. Use APIs under **GFG Product** Collection
  
  
  ## APIs
